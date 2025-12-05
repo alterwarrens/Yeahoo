@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Yeahoo!</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="icon" href="favicon.png" type="image/png">
+<meta charset="utf-8">
+<title>Yeahoo!</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.png" type="image/png">
 <style>
 :root {
   --preferred-font: sans-serif;
@@ -916,51 +916,40 @@ body {
 </style>
 </head>
 <body>
-  
 <div class="homepage">
-    <div class="container">
-        <img src="logopix.png" alt="Yeahoo! / logo" class="logo" id="topLogo" title="Click to change logo">
-        
-        <input type="file" id="logoPicker" accept="image/*" style="display:none">
-        <!-- reset button removed; use click on logo to pick/change image -->
-        
-        <div class="search-section">
-          <p>Search the web using Yeahoo!</p>
-            <input type="text" class="search-box" id="homeSearch">
-            <div class="search-buttons">
-                <button id="homeSearchBtn">Yeahoo! Search</button>
-            </div>
-        </div>
-
-        <div class="results-container">
-            <!-- Search results will be inserted here -->
-        </div>
-
-        <div class="bottom-section" style="max-width:760px;">
-            <div class="right-section" style="width:100%; padding:8px;">
-                 <a href="about.html">About Yeahoo!</a><br>
-                 <a href="logos.html">Yeahoo! Logos</a>
-             </div>
-        </div>
-        
-        <div class="copyright">
-            © <span id="currentYearIndex"></span> Yeahoo! Inc.
-        </div>
-    </div>
+<div class="container">
+<img src="logopix.png" alt="Yeahoo! logo" class="logo" id="topLogo" title="Change logo">
+<input type="file" id="logoPicker" accept="image/*" style="display:none">
+<div class="search-section">
+<p>Search the web using Yeahoo!</p>
+<input type="text" class="search-box" id="homeSearch">
+<div class="search-buttons">
+<button id="homeSearchBtn">Yeahoo! Search</button>
 </div>
-
+</div>
+<div class="results-container">
+</div>
+<div class="bottom-section" style="max-width:760px;">
+<div class="right-section" style="width:100%; padding:8px;">
+<a href="about.html">About Yeahoo!</a><br>
+<a href="logos.html">Yeahoo! Logos</a>
+</div>
+</div>  
+<div class="copyright">
+© <span id="currentYearIndex"></span> Yeahoo! Inc.
+</div>
+</div>
+</div>
 <div class="search-page">
-    <div class="search-page-header">
-        <a href="about.html" title="About Yeahoo!"><img src="logopix.png" alt="logo" class="search-page-logo"></a>
-        <input type="text" class="search-page-box" id="searchPageBox">
-        <button id="searchPageSearchBtn">Yeahoo! Search</button>
-    </div>
-    <div class="search-stats"></div>
-    <div class="results-container search-results">
-        <!-- Search results will be inserted here -->
-    </div>
+<div class="search-page-header">
+<a href="about.html" title="About Yeahoo!"><img src="logopix.png" alt="logo" class="search-page-logo"></a>
+<input type="text" class="search-page-box" id="searchPageBox">
+<button id="searchPageSearchBtn">Yeahoo! Search</button>
 </div>
-
+<div class="search-stats"></div>
+<div class="results-container search-results">
+</div>
+</div>
 <script>
 function sendEmail() {
     const emailInput = document.getElementById('emailInput').value;
