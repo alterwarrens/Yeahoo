@@ -1014,19 +1014,41 @@ function escapeHtml(str) {
 function escapeAttr(s){ return escapeHtml(s).replace(/"/g,'&quot;'); }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // logo picker + localStorage persistence
+    // logo picker + localStorage persistence + seasonal automatic selection
     const topLogo = document.getElementById('topLogo');
     const logoPicker = document.getElementById('logoPicker');
     const DEFAULT_LOGO = 'logopix.png';
-    // load saved logo (data URL) if present
+
+    function seasonalLogoForDate(d) {
+        // d is a Date object
+        const m = d.getMonth() + 1; // 1-12
+        const day = d.getDate();
+        // Priority: user saved custom logo > exact date holidays (Valentine) > month-wide events > default
+        // Valentine's Day: Feb 14
+        if (m === 2 && day === 14) return 'logo_valentine.png';
+        // Christmas: December
+        if (m === 12) return 'logo_christmas.png';
+        // Halloween: October
+        if (m === 10) return 'logo_halloween.png';
+        // Easter approximation: use April (common simple approach)
+        if (m === 4) return 'logo_easter.png';
+        // default pixel logo
+        return DEFAULT_LOGO;
+    }
+
+    // load saved logo (data URL) if present; otherwise use seasonal logo
     try {
         const saved = localStorage.getItem('yeahoo_logo_data');
         if (saved) {
             topLogo.src = saved;
+        } else {
+            topLogo.src = seasonalLogoForDate(new Date());
         }
     } catch (e) {
         console.warn('Could not load saved logo from localStorage', e);
+        topLogo.src = seasonalLogoForDate(new Date());
     }
+
     // set current year for copyright
     try {
         const yearEl = document.getElementById('currentYearIndex');
@@ -1059,11 +1081,15 @@ document.addEventListener('DOMContentLoaded', function() {
         reader.readAsDataURL(file);
     });
 
-    // load saved logo into search-page header (read-only here)
+    // load saved logo into search-page header (read-only here) or seasonal if none
     try {
         const spLogo = document.querySelector('.search-page-logo');
         const saved = localStorage.getItem('yeahoo_logo_data');
-        if (saved && spLogo) spLogo.src = saved;
+        if (saved && spLogo) {
+            spLogo.src = saved;
+        } else if (spLogo) {
+            spLogo.src = seasonalLogoForDate(new Date());
+        }
     } catch (e) { console.warn('Could not load search-page logo', e); }
 
     document.querySelector('#homeSearch').addEventListener('keypress', function(e) {
